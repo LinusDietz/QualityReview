@@ -1,13 +1,13 @@
 # QualityReview
 
-A Gradle tool for Java learners to improve the code quality.
+A Gradle tool for Java learners to improve code quality.
 
 ## Usage
 
 Using `gradle qualityReview` all Java files in the `src` directory are checked using [checkstyle](http://checkstyle.sourceforge.net), [PMD](https://pmd.github.io) and [FindBugs](http://findbugs.sourceforge.net) for code smells and potential bugs.
 The checks are a subset of the tools' rules to make them more appropriate for educational purposes.
 
-All reports are collected in the reports directory.
+All reports are collected in the `reports` directory.
 
 ## License
 
