@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<ruleset name="pmd-codequality"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>QualityReview</description>
+
+    <rule ref="rulesets/java/basic.xml"/>
+
+    <rule ref="rulesets/java/braces.xml">
+        <exclude name="IfElseStmtsMustUseBraces"/>
+        <exclude name="IfStmtsMustUseBraces"/>
+    </rule>
+
+    <rule ref="rulesets/java/controversial.xml">
+        <exclude name="AssignmentInOperand"/>
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="AvoidFinalLocalVariable"/>
+        <exclude name="AvoidLiteralsInIfCondition"/>
+        <exclude name="CallSuperInConstructor"/>
+        <exclude name="DataflowAnomalyAnalysis"/>
+        <exclude name="DataflowAnomalyAnalysis"/>
+        <exclude name="DefaultPackage"/>
+        <exclude name="NullAssignment"/>
+        <exclude name="OnlyOneReturn"/>
+        <exclude name="UseObjectForClearerAPI"/>
+    </rule>
+
+
+    <rule ref="rulesets/java/design.xml">
+        <exclude name="AccessorMethodGeneration"/>
+        <exclude name="AvoidReassigningParameters"/>
+        <exclude name="ConstructorCallsOverridableMethod"/>
+        <exclude name="ImmutableField"/>
+        <exclude name="SimpleDateFormatNeedsLocale"/>
+        <exclude name="UseUtilityClass"/>
+        <exclude name="UseVarargs"/>
+    </rule>
+
+    <rule ref="rulesets/java/empty.xml"/>
+    <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
+        <properties>
+            <property name="allowCommentedBlocks" description="blah blah" value="true"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml">
+        <exclude name="LongVariable"/>
+        <exclude name="ShortClassName"/>
+        <exclude name="ShortMethodName"/>
+        <exclude name="ShortVariable"/>
+    </rule>
+
+    <rule ref="rulesets/java/optimizations.xml">
+        <exclude name="LocalVariableCouldBeFinal"/>
+        <exclude name="MethodArgumentCouldBeFinal"/>
+        <exclude name="UseStringBufferForStringAppends"/>
+    </rule>
+
+    <rule ref="rulesets/java/strictexception.xml"/>
+
+    <rule ref="rulesets/java/unnecessary.xml"/>
+
+    <rule ref="rulesets/java/unusedcode.xml">
+        <exclude name="UnusedFormalParameter"/>
+    </rule>
+
+</ruleset>

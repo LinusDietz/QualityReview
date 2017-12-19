@@ -1,0 +1,86 @@
+def project_id = '### insert here ###'
+
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'ISO8859-15'
+}
+
+dependencies {
+    compile 'junit:junit:4.12'
+
+    checkstyle 'com.puppycrawl.tools:checkstyle:7.6.1'
+}
+
+pmd {
+    ignoreFailures = true
+    toolVersion = '5.5.5'
+    ruleSetFiles = files('pmd-ruleset.xml')
+}
+
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = true
+        html.enabled = false
+    }
+}
+
+findbugs {
+    ignoreFailures = true
+    effort = 'max'
+    reportLevel = 'low'
+    toolVersion = '3.0.1'
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = true
+        xml.withMessages = true
+        xml.destination = new StringBuilder().append('report/FindBugs').append(project_id).append('.xml').toString() as File
+    }
+}
+
+checkstyle {
+    toolVersion = '7.6.1'
+    ignoreFailures = true
+    configFile = 'checkstyle.xml' as File
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.destination = new StringBuilder().append('report/CheckStyle').append(project_id).append('.xml').toString() as File
+    }
+}
+
+
+task copyPmd(type: Copy) {
+    from('build/reports/pmd/main.xml')
+    into(new StringBuilder().append('report'))
+    rename {
+        String fileName -> new StringBuilder().append('PMD').append(project_id).append('.xml').toString()
+    }
+}
+
+
+task qualityReview() {
+    dependsOn += ['check', 'copyPmd']
+}
+
